@@ -79,5 +79,25 @@ public class Main
           System.out.println("depth of 4 in tree: " + tree.depth(4));
 
           System.out.println("diameter of tree: " + tree.diameter());
+
+          System.out.print("left view of tree: ");
+          tree.leftViewOfTree();
+  
+          System.out.println();
+  
+          System.out.print("right view of tree: ");
+          tree.rightViewOfTree();
+  
+          System.out.println();
+  
+          System.out.print("top view of tree: ");
+          tree.topViewOfTree();
+  
+          System.out.println();
+  
+          System.out.print("bottom view of tree: ");
+          tree.bottomViewOfTree();
+  
+          System.out.println();
       }
 }

@@ -2,6 +2,9 @@ package dsa.tree.BinaryTree;
 
 import java.util.ArrayList;
 import java.util.Queue;
+import javafx.util.Pair;
+import java.util.LinkedList;
+
 
 public class BinaryTree<T> {
 
@@ -127,4 +130,167 @@ public class BinaryTree<T> {
         TreePrinter<T> printer = new TreePrinter<T>(treeRoot);
         printer.print();
     }
+
+    public void leftViewOfTree()
+    {
+        ArrayList<T> answer = new ArrayList<T>();
+        Queue<Pair<Node<T>, Integer>> order = new LinkedList<Pair<Node<T>, Integer>>();
+        order.add(new Pair(treeRoot, 0));
+        while(!order.isEmpty())
+        {
+            Node<T> temp = order.peek().getKey();
+            Integer depth = order.peek().getValue();
+            order.remove();
+            if (answer.size() <= depth)
+            {
+                answer.add(temp.value);
+            }
+            if (temp.left != null){
+                order.add(new Pair(temp.left, depth + 1));
+            }
+            if (temp.right != null){
+                order.add(new Pair(temp.right, depth + 1));
+            }
+        }
+        for(T val: answer)
+        {
+            System.out.print(val + " ");
+        }
+    }
+
+    public void leftViewOfTree()
+        {
+            ArrayList<T> answer = new ArrayList<T>();
+            Queue<Pair<Node<T>, Integer>> order = new LinkedList<Pair<Node<T>, Integer>>();
+            order.add(new Pair(treeRoot, 0));
+            while(!order.isEmpty())
+            {
+                Node<T> temp = order.peek().getKey();
+                Integer depth = order.peek().getValue();
+                order.remove();
+                if (answer.size() <= depth)
+                {
+                    answer.add(temp.value);
+                }
+                if (temp.left != null){
+                    order.add(new Pair(temp.left, depth + 1));
+                }
+                if (temp.right != null){
+                    order.add(new Pair(temp.right, depth + 1));
+                }
+            }
+            for(T val: answer)
+            {
+                System.out.print(val + " ");
+            }
+        }
+
+        public void rightViewOfTree()
+        {
+            ArrayList<T> answer = new ArrayList<T>();
+            Queue<Pair<Node<T>, Integer>> order = new LinkedList<Pair<Node<T>, Integer>>();
+            order.add(new Pair(treeRoot, 0));
+            while(!order.isEmpty())
+            {
+                Node<T> temp = order.peek().getKey();
+                Integer depth = order.peek().getValue();
+                order.remove();
+                if (answer.size() <= depth)
+                {
+                    answer.add(temp.value);
+                }
+
+                if (temp.right != null){
+                    order.add(new Pair(temp.right, depth + 1));
+                }
+
+                if (temp.left != null){
+                    order.add(new Pair(temp.left, depth + 1));
+                }
+            }
+            for(T val: answer)
+            {
+                System.out.print(val + " ");
+            }
+        }
+
+        public void topViewOfTree()
+        {
+            ArrayList<T> answer = new ArrayList<T>();
+            Queue<Pair<Node<T>, Integer>> order = new LinkedList<Pair<Node<T>, Integer>>();
+            order.add(new Pair(treeRoot, 0));
+
+            HashMap<Integer, T> traversal = new HashMap<Integer, T>();
+            while(!order.isEmpty())
+            {
+                Node<T> temp = order.peek().getKey();
+                Integer displacement = order.peek().getValue();
+                order.remove();
+                if (!traversal.containsKey(displacement))
+                {
+                    traversal.put(displacement, temp.value);
+                }
+
+                if (temp.left != null){
+                    order.add(new Pair(temp.left, displacement - 1));
+                }
+
+                if (temp.right != null){
+                    order.add(new Pair(temp.right, displacement + 1));
+                }
+            }
+
+            ArrayList<Integer> distances = new ArrayList<Integer>();
+            for(Integer key: traversal.keySet())
+            {
+                distances.add(key);
+            }
+
+            Collections.sort(distances);
+
+
+            for(Integer distance: distances)
+            {
+                System.out.print(traversal.get(distance) + " ");
+            }
+        }
+
+        public void bottomViewOfTree()
+        {
+            ArrayList<T> answer = new ArrayList<T>();
+            Queue<Pair<Node<T>, Integer>> order = new LinkedList<Pair<Node<T>, Integer>>();
+            order.add(new Pair(treeRoot, 0));
+
+            HashMap<Integer, T> traversal = new HashMap<Integer, T>();
+            while(!order.isEmpty())
+            {
+                Node<T> temp = order.peek().getKey();
+                Integer displacement = order.peek().getValue();
+                order.remove();
+
+                traversal.put(displacement, temp.value);
+
+                if (temp.left != null){
+                    order.add(new Pair(temp.left, displacement - 1));
+                }
+
+                if (temp.right != null){
+                    order.add(new Pair(temp.right, displacement + 1));
+                }
+            }
+
+            ArrayList<Integer> distances = new ArrayList<Integer>();
+            for(Integer key: traversal.keySet())
+            {
+                distances.add(key);
+            }
+
+            Collections.sort(distances);
+
+
+            for(Integer distance: distances)
+            {
+                System.out.print(traversal.get(distance) + " ");
+            }
+        }
 }
