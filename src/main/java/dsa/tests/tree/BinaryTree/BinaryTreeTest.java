@@ -31,7 +31,7 @@ class BinaryTreeTest
   }
 
   @Test
-  public void testInorderTraversal()
+  public void testInOrderTraversal()
   { 
     List<Integer> expected = Arrays.asList(4, 2, 5, 1, 3, 7, 6);
     List<Integer> actual = binaryTree.inOrder();
@@ -40,11 +40,20 @@ class BinaryTreeTest
   }
 
   @Test
-  public void testPreorderTraversal()
+  public void testPreOrderTraversal()
   { 
     List<Integer> expected = Arrays.asList(1, 2, 4, 9, 10, 5, 6, 7, 8, 3);
     List<Integer> actual = binaryTree.preOrder();
   
+    assertEquals(expected, actual);
+  }
+
+  @Test
+  public void testPostOrderTraversal()
+  { 
+    List<Integer> expected = Arrays.asList(1, 2, 4, 9, 10, 5, 6, 7, 8, 3);
+    List<Integer> actual = binaryTree.postOrder();
+
     assertEquals(expected, actual);
   }
 }
